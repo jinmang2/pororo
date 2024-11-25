@@ -1,15 +1,15 @@
 # yapf: disable
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 packages = find_packages()
 requirements = [
-    "torch==1.6.0",
-    "torchvision==0.7.0",
-    "pillow>=4.1.1",
-    "fairseq>=0.10.2",
-    "transformers>=4.0.0",
-    "sentence_transformers>=0.4.1.2",
+    "torch",
+    "torchvision",
+    "pillow",
+    # "fairseq>=0.10.2",
+    "transformers",
+    "sentence_transformers",
     "nltk>=3.5",
     "word2word",
     "wget",
@@ -19,8 +19,23 @@ requirements = [
     "whoosh",
     "marisa-trie",
     "kss",
-    'dataclasses; python_version<"3.7"',
 ]
+
+"""
+pip install fairseq==0.10.0
+pip install python-mecab-ko
+pip install -e .
+fairseq의 np.float -> np.float64로 수정
+fairseq/dataclass/data_class.py 에서 mutable 부분 수정
+>>> /home/jinmang2/.conda/envs/jinmang2/lib/python3.11/site-packages/fairseq
+>>> \bnp\.float\b(?!\d)
+pororo에서 from torchvision.models.vgg import model_urls 사용부분 주석처리
+warning이 잔뜩 뜨더라!
+- pretrained 인자 사용 x, weights 사용 (/home/jinmang2/.conda/envs/jinmang2/lib/python3.11/site-packages/torchvision/models/_utils.py:207)
+- weights 파라미터에 잘못된 값 전달. enum class 사용해야함 (/home/jinmang2/.conda/envs/jinmang2/lib/python3.11/site-packages/torchvision/models/_utils.py:213)
+- torch.load 사용시 `weights_only=False` 워닝 (/home/jinmang2/editable_packages/pororo/pororo/models/brainOCR/detection.py:80)
+- copy_state_dict -> 보안 위험 (/home/jinmang2/editable_packages/pororo/pororo/models/brainOCR/detection.py:80)
+"""
 
 VERSION = {}  # type: ignore
 with open("pororo/__version__.py", "r") as version_file:
