@@ -26,9 +26,10 @@ pip install fairseq==0.10.0
 pip install python-mecab-ko
 pip install -e .
 fairseq의 np.float -> np.float64로 수정
-fairseq/dataclass/data_class.py 에서 mutable 부분 수정
 >>> /home/jinmang2/.conda/envs/jinmang2/lib/python3.11/site-packages/fairseq
 >>> \bnp\.float\b(?!\d)
+fairseq/dataclass/data_class.py 에서 mutable 부분 수정
+>>> TrainingConfig, EvalLMConfig 부분 field(default_factory=...)로
 pororo에서 from torchvision.models.vgg import model_urls 사용부분 주석처리
 warning이 잔뜩 뜨더라!
 - pretrained 인자 사용 x, weights 사용 (/home/jinmang2/.conda/envs/jinmang2/lib/python3.11/site-packages/torchvision/models/_utils.py:207)
